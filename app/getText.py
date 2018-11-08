@@ -9,20 +9,50 @@ import matplotlib.pyplot as plt
 from PIL import Image, ImageFilter
 from pytesseract import image_to_string
 
+# Class for coordinate calculation
+class XY:
+    def __init__(self, x, y):
+        self.pos = (x, y)
+
+# ImagePos needs cv2
+class IPos:
+    def __init__(self, src):
+        self._image = cv2.imread(src)
+        self._h, self._w, _ = self._image.shape
+
+    # return width, height
+    def getSize(self):
+        self._wh = XY(self._w, self._h)
+        return self._w, self._h
+
+    # pos, wh is tuple (x, y)
+    def trim(self, pos, wh):
+        image_trim = self._image[int(pos[1]):int(wh[1]), int(pos[0]):int(wh[0])]
+        # temp
+        print('pos : ' + str(int(pos[1])) + ' ' + str(int(pos[0])))
+        print('width x height : '+ str(int(wh[1])) + ' ' + str(int(wh[0])))
+        ###
+        cv2.imwrite('image_trim.jpg', image_trim)
+        return image_trim
+
+
 def OCR(imgfile, language):
-    text = image_to_string(image, lang=language)
+    text = image_to_string(imgfile, lang=language)
     print(text)
 
+# img, xy : start pos, wh : width x height
+# def im_trim (img, xy, wh):
+#     img_trim = img[]
+
 def main():
-    image = Image.open('../data/PUBG_screenshot.png')
+    src  = '../data/PUBG_screenshot.png'
+    image = IPos(src)
 
-    img = cv2.imread('../data/PUBG_screenshot.png')
+    size = image.getSize()
+    size_x = size[1]/3 - size[1]/3 * 2
+    width = int(size[1] - size_x)
 
-    equipPos_x = int(img.shape[1] * 2 / 3)
-
-    temp = image.crop((equipPos_x, 0, equipPos_x / 2 + 100, img.shape[0] + 100))
-    # print(type(img.shape))
-    temp.save('./a.png')
+    image.trim((int(size[0]/3 * 2), size[1]), (width, size[1]))
 
     # img = cv2.imread('../data/PUBG_screenshot.png', cv2.IMREAD_GRAYSCALE)
     #

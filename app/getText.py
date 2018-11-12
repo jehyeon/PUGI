@@ -20,7 +20,14 @@ def main():
     src = '../data/PUBG_screenshot.png'
     image = es.ESwh(src)
 
-    image.save_all('./')
+    origin, gray, blur = image.getImages()
+
+    h, w, _ = origin.shape
+    area1 = (0, 0, w, h)
+    area2 = (int(w/3*2), 0, w, h)
+    image.save('./temp1.jpg', image.crop(origin, area1))
+    image.save('./temp2.jpg', image.crop(origin, area2))
+    # image.save_all('./')
 
 def main2():
     src  = '../data/PUBG_screenshot.png'
@@ -39,7 +46,8 @@ def main2():
     # Read image and covert COLOR_GRAY
     img = cv2.imread(src, cv2.IMREAD_COLOR)
     height, width, _ = img.shape
-    print(width, height)
+    # print(width, height)
+
     # cv2.imwrite('tempo.jpg',img[0:height,int(width/3*2):width])
     cropped = img[0:height,int(width/3*2):width].copy()
     img_gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)

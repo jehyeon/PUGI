@@ -1,6 +1,14 @@
 import datetime
 import os
 import pyautogui
+import time
+
+from get_info import *
+
+# POS
+QUEST_LIST_BTN = (1189, 234)
+QUEST_CLEAR_BTN = (1190, 664)
+RECEIVE_QUEST_CLEAR_REWARD = (512, 452)
 
 # 현재 시간
 # YYYY-MM-DD-HH-MM-SS
@@ -41,6 +49,36 @@ def activateGameWindow():
     # pyautogui.press('enter')
 
 # 게임 컨트롤
+def workQuest():
+    # 퀘스트 받기 
+    # 일정시간 기다리기? 5분 간격으로 퀘스트 확인?
+
+    openQuestList()
+
+    if checkQuestClear():
+        # 보상 받기
+        pyautogui.click(QUEST_CLEAR_BTN[0], QUEST_CLEAR_BTN[1])
+        time.sleep(3)
+
+        # 보상 선택하기
+        pyautogui.click(RECEIVE_QUEST_CLEAR_REWARD[0], RECEIVE_QUEST_CLEAR_REWARD[1])
+        time.sleep(2)
+
+    else:
+        print('퀘스트 미 클리어')     # 현재 시간 표기
+
+def openMenu():
+    # 메뉴 창 열기
+    activateGameWindow()
+    time.sleep(1)
+    pyautogui.press('O')
+    time.sleep(1)
+
+def openQuestList():
+    openMenu()
+    pyautogui.click(QUEST_LIST_BTN[0], QUEST_LIST_BTN[1])
+    time.sleep(1)
+
 def goHome():
     # H
     pass

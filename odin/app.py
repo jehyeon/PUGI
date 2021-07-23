@@ -1,3 +1,5 @@
+import schedule
+
 from Character import *
 from window_control import *
 from get_info import *
@@ -13,12 +15,19 @@ if __name__ == '__main__':
     # a.saveStatusToLog()
     # print(a.getlog())
     # activateGameWindow()
-    capture()
+    # capture()
     # print(imageToText('logs/level.png'))
     # print(imageToText('logs/exp.png'))
-    print(imageToText('logs/hp.png'))
+    # print(imageToText('logs/hp.png'))
     #print(imageToText('logs/buff1.png'))
     # print(imageToText('logs/buff2.png'))
     # print(imageToText('logs/buff3.png'))
     # print(imageToText('logs/buff4.png'))
     # print(imageToText('logs/portion.png'))
+    # print(imageToText('logs/quest.png'))
+    # print(imageToText('logs/quest_clear.png'))
+    schedule.every(5).seconds.do(workQuest)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

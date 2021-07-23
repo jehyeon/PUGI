@@ -1,0 +1,16 @@
+# vscode
+.vscode
+
+# created by virtualenv automatically
+Lib
+Scripts
+pyvenv.cfg
+
+# 로그 데이터 예외
+logs/
+
+# 테스팅 용 이미지 예외
+*.png
+
+# python
+__pycache__

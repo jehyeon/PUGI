@@ -1,22 +1,12 @@
 import schedule
-
-from Character import *
-from window_control import *
-from get_info import *
+from game_manager import *
 
 def main():
-    while True:
-        inp = input('')
-        if inp == 'quit' or inp == 'Quit':
-            break
-
-if __name__ == '__main__':
     # a = Character('치즈오리', 35, 23.6122, '')
     # a.saveStatusToLog()
     # print(a.getlog())
-    # activateGameWindow()
     # capture()
-    # print(imageToText('logs/level.png'))
+    # print(imageToText('logs/remain_potion.png'))
     # print(imageToText('logs/exp.png'))
     # print(imageToText('logs/hp.png'))
     #print(imageToText('logs/buff1.png'))
@@ -26,8 +16,23 @@ if __name__ == '__main__':
     # print(imageToText('logs/portion.png'))
     # print(imageToText('logs/quest.png'))
     # print(imageToText('logs/quest_clear.png'))
-    schedule.every(5).seconds.do(workQuest)
 
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+
+    # schedule.every(5).seconds.do(workQuest)
+
+    
+    # goHome()
+    # goShop()
+    activateGameWindow()
+    # buyAllPotions()
+    goLobby()
+
+    # selectCharacter()
+    # schedule.every(5).seconds.do(checkStatus)
+    
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(1)
+
+if __name__ == '__main__':
+    main()

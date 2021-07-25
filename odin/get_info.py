@@ -6,11 +6,16 @@ import pyautogui
 # QHD, 1/4 좌상단 기준 (temporary)
 # 체력과 포션의 경우 단위가 달라질 수가 있음을 고려해야 함
 HP_REGION = (72, 42, 80, 15)
-LEVEL_REGION = (9, 655, 49, 37)
-EXP_REGION = (83, 673, 57, 15)
+
+# LEVEL_REGION = (9, 655, 49, 37)
+# EXP_REGION = (83, 673, 57, 15)
+
 QUEST_REGION = (1064, 110, 45, 23)
 QUEST_CLEAR_REGION = (267, 137, 42, 50)
 QUEST_CLEAR_TEXT = ['2z']
+
+REMAIN_POTION_REGION = (608, 308, 65, 35)
+
 # BUFF_REGION = [
 #     (499, 655, 27, 18),
 #     (559, 657, 25, 16),
@@ -23,9 +28,8 @@ QUEST_CLEAR_TEXT = ['2z']
 def capture():
     # temp
     pyautogui.screenshot('logs/hp.png', region=HP_REGION)
-    pyautogui.screenshot('logs/level.png', region=LEVEL_REGION)
-    pyautogui.screenshot('logs/exp.png', region=EXP_REGION)
-    pyautogui.screenshot('logs/quest_clear.png', region=QUEST_CLEAR_REGION)
+    pyautogui.screenshot('logs/remain_potion.png', region=REMAIN_POTION_REGION)
+    # pyautogui.screenshot('logs/quest_clear.png', region=QUEST_CLEAR_REGION)
     # pyautogui.screenshot('logs/buff1.png', region=BUFF_REGION[0])
     # pyautogui.screenshot('logs/buff2.png', region=BUFF_REGION[1])
     # pyautogui.screenshot('logs/buff3.png', region=BUFF_REGION[2])
@@ -45,6 +49,17 @@ def imageToText(fileName):
     # cv2.waitKey(0)
 
     return pytesseract.image_to_string(th, lang='eng').strip()
+
+# Status 가져오기
+def getStatus():
+    # temp
+    capture()
+
+    level = imageToText('logs/level.png')
+    exp = imageToText('logs/exp.png')
+    hp = imageToText('logs/hp.png')
+
+    return level, exp, hp
 
 def checkQuestClear():
     # 퀘스트 완료 여부

@@ -5,7 +5,9 @@ import time
 
 import pyautogui
 
-from get_info import *
+import get_info
+
+import pos
 
 # POS
 QUEST_LIST_BTN = (1189, 234)
@@ -18,17 +20,8 @@ GO_HOME_OK_BTN_E = (771, 452)
 CHANGE_CHARACTER_BTN_S = (1039, 499)
 CHANGE_CHARACTER_BTN_E = (1082, 545)
 
-POSIONS_BTN_S = (21, 137)
-POSIONS_BTN_E = (288, 194)
-
 MAX_POTION_BTN_S = (693, 410)
 MAX_POTION_BTN_E = (776, 431)
-
-BUY_BTN_S = (645, 505)
-BUY_BTN_E = (771, 530)
-
-ALERT_OK_S = (645, 429)
-ALERT_OK_E = (769, 453)
 
 CHAR_1_BTN_S = (1074, 89)
 CHAR_1_BTN_E = (1244, 150)
@@ -171,4 +164,184 @@ def receiveTodayQuest():
     pass
 
 def clearTodayQuest():
+    pass
+
+
+# 리세마라
+
+def checkClearQuestForResetMaraton():
+    result = get_info.getImageToText('logs/temp.png', pos.QUEST_CLEAR_AREA_RESET_MARATON)
+
+    print(result)
+
+    if '보상' in result or \
+        '터치' in result or \
+        '터차' in result or \
+        '하어' in result or \
+        '수떤' in result or \
+        '수정' in result:
+
+        # 퀘스트 완료 클릭
+        click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
+        time.sleep(2)
+        # ZZZ()
+
+    else:
+        print('퀘스트 미완료 or 감지 안됨')
+
+def checkSpeakingForResetMaraton():
+    result = get_info.getImageToText('logs/temp2.png', pos.QUEST_SPEAK_AREA_RESET_MARATON)
+
+    if len(result) > 10:
+        for _ in range(5):
+            click(pos.TEMP_SPEAK_OK_BTN_S, pos.TEMP_SPEAK_OK_BTN_E)
+            time.sleep(0.5)
+
+
+def goQuestForResetMaraton():
+    # 퀘스트 완료가 아닐 땐 한번씩 눌러줌
+    click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
+    
+def checkStories():
+    
+    # 퀘스트 목록을 눌러서 임무를 자동으로 수행할 수 있어요
+    if not pyautogui.locateOnScreen('1.png') == None:
+        click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
+        time.sleep(15)
+        click(pos.TEMP_POTION_BTN_S, pos.TEMP_POTION_BTN_E) # 물약 클릭
+    
+    # 아이템 장착
+    if not pyautogui.locateOnScreen('2.png') == None:
+        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
+        time.sleep(10)
+        click(pos.TEMP_CLO_BTN_S, pos.TEMP_CLO_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_CLO_BTN_S, pos.TEMP_CLO_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+
+    if not pyautogui.locateOnScreen('3.png') == None:
+        click(pos.POSIONS_BTN_S, pos.POSIONS_BTN_E)
+        time.sleep(3)
+        click(pos.BUY_BTN_S, pos.BUY_BTN_E)
+        time.sleep(3)
+        pyautogui.press('ESC')
+
+    if not pyautogui.locateOnScreen('4.png') == None:
+        click(pos.TEMP_FAST_SEE_BTN_S, pos.TEMP_FAST_SEE_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_FAST_SEE_BTN_S, pos.TEMP_FAST_SEE_BTN_E)
+        time.sleep(30)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_BTN_S, pos.TEMP_RIDE_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_FIRST_BTN_S, pos.TEMP_RIDE_FIRST_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+
+    if not pyautogui.locateOnScreen('5.png') == None:
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_BTN_S, pos.TEMP_RIDE_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_SECOND_BTN_S, pos.TEMP_RIDE_SECOND_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+
+    if not pyautogui.locateOnScreen('6.png') == None:
+        click(pos.TEMP_GO_HOME_BTN_S, pos.TEMP_GO_HOME_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_ALERT_OK_BTN_S, pos.TEMP_ALERT_OK_BTN_E)
+    
+    if not pyautogui.locateOnScreen('7.png') == None:
+        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
+        time.sleep(5)
+        click(pos.TEMP_USE_ITEM_BTN_S, pos.TEMP_USE_ITEM_BTN_E)
+        time.sleep(3)
+        pyautogui.click(945, 168)
+        time.sleep(3)
+        pyautogui.click(945, 168)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        pyautogui.click(1059, 158)
+        time.sleep(3)
+        pyautogui.click(1190, 662)
+        time.sleep(3)
+        pyautogui.click(1007, 233)
+        time.sleep(3)
+        pyautogui.click(856, 380)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        pyautogui.moveTo(1058, 633)
+        pyautogui.dragTo(1059, 682, 1, button='left')
+    
+    if not pyautogui.locateOnScreen('8.png') == None:
+        click(pos.POSIONS_BTN_S, pos.POSIONS_BTN_E)
+        time.sleep(3)
+        click(pos.BUY_BTN_S, pos.BUY_BTN_E)
+        time.sleep(3)
+        pyautogui.press('ESC')
+
+    if not pyautogui.locateOnScreen('9.png') == None:
+        pyautogui.click(1215, 121)
+        time.sleep(3)
+
+    if '정보' in get_info.getImageToText('logs/temp3.png', pos.SELECT_AVATAR_AREA_RESET_MARATON):
+        pyautogui.click(368, 509)
+        time.sleep(3)
+        pyautogui.click(1145, 655)
+        time.sleep(3)
+        pyautogui.click(1236, 65)
+        time.sleep(20)
+        pyautogui.click(638, 643)
+        time.sleep(10)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+        pyautogui.click(1117, 162)
+        time.sleep(3)
+        pyautogui.click(972, 185)
+        time.sleep(3)
+        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+    
+    if not pyautogui.locateOnScreen('12.png') == None:
+        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
+        time.sleep(3)
+
+
+def checkEquipBtn():
+    # 아이템 자동 장착
+    if not pyautogui.locateOnScreen('4.png') == None:
+        click(pos.EQUIP_BTN_S, pos.EQUIP_BTN_E)
+        time.sleep(3)
+        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
+        time.sleep(3)
+        pyautogui.click(947, 171)
+        time.sleep(3)
+        pyautogui.click(444, 598)
+        time.sleep(3)
+        pyautogui.click(706, 487)
+        time.sleep(3)
+        pyautogui.click(706, 487)
+        time.sleep(3)
+        pyautogui.press('ESC')
+
+def ZZZ():
+    pyautogui.press('Z')
+
+def temp():
+    print(pyautogui.locateOnScreen('12.png'))
+    # click(pos.TEMP_ALERT_OK_BTN_S, pos.TEMP_ALERT_OK_BTN_E)
+    # checkStories()
+    # print(pyautogui.locateOnScreen('11.png'))
     pass

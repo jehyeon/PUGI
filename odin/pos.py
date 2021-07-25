@@ -1,0 +1,77 @@
+# 상점 potion 버튼 
+POSIONS_BTN_S = (21, 137)
+POSIONS_BTN_E = (288, 194)
+
+# 상점 구매 버튼
+BUY_BTN_S = (645, 505)
+BUY_BTN_E = (771, 530)
+
+# 리세마라
+# 터치하여 보상 수령
+QUEST_CLEAR_AREA_RESET_MARATON = (1024, 130, 124, 23)
+
+# 등장인물 text
+QUEST_SPEAK_AREA_RESET_MARATON = (928, 220, 290, 100)
+
+# 아바타 선택 
+SELECT_AVATAR_AREA_RESET_MARATON = (323, 493, 100, 34)
+
+# 아이템 장착 버튼
+EQUIP_BTN_S = (525, 448)
+EQUIP_BTN_E = (556, 463)
+
+# 퀘스트 클리어 영역
+QUEST_CLEAR_BTN_RESET_MARATON_S = (989, 113)
+QUEST_CLEAR_BTN_RESET_MARATON_E = (1193, 146)
+
+# temp 포션 버튼
+TEMP_POTION_BTN_S = (1144, 488)
+TEMP_POTION_BTN_E = (1171, 513)
+
+# temp 가방 버튼
+TEMP_BAG_BTN_S = (1158, 38)
+TEMP_BAG_BTN_E = (1201, 81)
+
+# temp 옷 버튼
+TEMP_CLO_BTN_S = (921, 142)
+TEMP_CLO_BTN_S = (972, 191)
+
+# temp quit 버튼
+TEMP_QUIT_BTN_S = (1223, 43)
+TEMP_QUIT_BTN_E = (1262, 73)
+
+# temp 바로 보기 버튼
+TEMP_FAST_SEE_BTN_S = (566, 628)
+TEMP_FAST_SEE_BTN_E = (706, 649)
+
+# temp ride 버튼
+TEMP_RIDE_BTN_S = (1159, 138)
+TEMP_RIDE_BTN_E = (1200, 182)
+
+# temp 첫번째 ride 버튼
+TEMP_RIDE_FIRST_BTN_S = (941, 176)
+TEMP_RIDE_FIRST_BTN_E = (1045, 224)
+
+# temp 두번째 ride 버튼
+TEMP_RIDE_SECOND_BTN_S = (1064, 173)
+TEMP_RIDE_SECOND_BTN_E = (1161, 217)
+
+# temp ride equip 버튼
+TEMP_RIDE_EQUIP_BTN_S = (1138, 655)
+TEMP_RIDE_EQUIP_BTN_E = (1261, 677)
+
+# temp speak ok 버튼
+TEMP_SPEAK_OK_BTN_S = (1220, 277)
+TEMP_SPEAK_OK_BTN_E = (1262, 307)
+
+# temp go home 버튼
+TEMP_GO_HOME_BTN_S = (17, 250)
+TEMP_GO_HOME_BTN_E = (38, 277)
+
+# temp alert ok 버튼
+TEMP_ALERT_OK_BTN_S = (646, 431)
+TEMP_ALERT_OK_BTN_E = (767, 451)
+
+# temp 소모품 버튼
+TEMP_USE_ITEM_BTN_S = (1130, 90)
+TEMP_USE_ITEM_BTN_E = (1189, 121)

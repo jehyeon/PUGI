@@ -25,10 +25,18 @@ REMAIN_POTION_REGION = (608, 308, 65, 35)
 # ]
 # PORTION_REGION = (1145, 510, 30, 17)
 
+QUESRT_CLEAR_TEMP = (1024, 130, 124, 23)
+
+def getImageToText(fileName, region):
+    pyautogui.screenshot(fileName, region=region)
+
+    return imageToText(fileName)
+
 def capture():
     # temp
-    pyautogui.screenshot('logs/hp.png', region=HP_REGION)
-    pyautogui.screenshot('logs/remain_potion.png', region=REMAIN_POTION_REGION)
+    pyautogui.screenshot('logs/temp.png', region=QUESRT_CLEAR_TEMP)
+    # pyautogui.screenshot('logs/hp.png', region=HP_REGION)
+    # pyautogui.screenshot('logs/remain_potion.png', region=REMAIN_POTION_REGION)
     # pyautogui.screenshot('logs/quest_clear.png', region=QUEST_CLEAR_REGION)
     # pyautogui.screenshot('logs/buff1.png', region=BUFF_REGION[0])
     # pyautogui.screenshot('logs/buff2.png', region=BUFF_REGION[1])
@@ -48,7 +56,7 @@ def imageToText(fileName):
     # cv2.imshow('temp', th)
     # cv2.waitKey(0)
 
-    return pytesseract.image_to_string(th, lang='eng').strip()
+    return pytesseract.image_to_string(th, lang='kor').strip().replace(' ', '')
 
 # Status 가져오기
 def getStatus():
@@ -73,3 +81,5 @@ def checkQuestClear():
         count += 1
 
     return clear
+
+

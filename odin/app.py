@@ -23,29 +23,14 @@ def main():
     # print(imageToText('logs/quest_clear.png'))
 
 
-    # schedule.every(5).seconds.do(workQuest)
-
-    
-    # goHome()
-    # goShop()
-    # activateGameWindow()
-    # buyAllPotions()
-    # goLobby()
-
-    # selectCharacter()
-    # checkStories()
-    temp()
-
-    # schedule.every(3).seconds.do(checkClearQuestForResetMaraton)  # 퀘스트 완료 여부 확인
-    # schedule.every(30).seconds.do(goQuestForResetMaraton)   # 1분에 한번씩 퀘스트 클릭
-    # schedule.every(60).seconds.do(checkStories) # 스토리 진행
-    # schedule.every(1).seconds.do(ZZZ)  # 1초마다 Z키 누름
-    # schedule.every(1).seconds.do(checkEquipBtn)   # 장착 버튼이 뜨면 바로 누름
-    # schedule.every(1).seconds.do(checkSpeakingForResetMaraton)
+    # 리세마라
+    # schedule.every(1).seconds.do(resetMaraton)  # 리세마라
+    # schedule.every(40).seconds.do(clickQuest)  # 퀘스트 창 클릭
 
     # while True:
     #     schedule.run_pending()
-    #     time.sleep(1)
+
+    temp()
 
 if __name__ == '__main__':
     main()

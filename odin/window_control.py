@@ -104,7 +104,7 @@ def workQuest():
     if checkQuestClear():
         # 보상 받기
         pyautogui.click(QUEST_CLEAR_BTN[0], QUEST_CLEAR_BTN[1])
-        time.sleep(3)
+        time.sleep(5)
 
         # 보상 선택하기
         pyautogui.click(RECEIVE_QUEST_CLEAR_REWARD[0], RECEIVE_QUEST_CLEAR_REWARD[1])
@@ -128,7 +128,7 @@ def openQuestList():
 # 동작
 def goHome():
     pyautogui.press('H')
-    time.sleep(3)
+    time.sleep(5)
     click(GO_HOME_OK_BTN_S, GO_HOME_OK_BTN_E)
     time.sleep(10)
 
@@ -138,22 +138,22 @@ def goShop():
 
 def buyAllPotions():
     click(POSIONS_BTN_S, POSIONS_BTN_E)
-    time.sleep(3)
+    time.sleep(5)
     # 포션 구매 가능 수량 보기
     click(MAX_POTION_BTN_S, MAX_POTION_BTN_E)
-    time.sleep(3)
+    time.sleep(5)
     click(BUY_BTN_S, BUY_BTN_E)
-    time.sleep(3)
+    time.sleep(5)
     pyautogui.press('ESC')
-    time.sleep(3)
+    time.sleep(5)
 
 def goLobby():
     openMenu()
-    time.sleep(3)
+    time.sleep(5)
     click(CHANGE_CHARACTER_BTN_S, CHANGE_CHARACTER_BTN_E)
-    time.sleep(3)
+    time.sleep(5)
     click(ALERT_OK_S, ALERT_OK_E)
-    time.sleep(3)
+    time.sleep(5)
 
 def changeCharacter(chracterNumber):
     character = CHARACTERS[chracterNumber]
@@ -168,180 +168,90 @@ def clearTodayQuest():
 
 
 # 리세마라
+def resetMaraton():
+    # Z 계속 눌러줌
+    pyautogui.press('Z')
 
-def checkClearQuestForResetMaraton():
+    # 퀘스트가 있을 경우
+    result = get_info.getImageToText('logs/temp.png', (1073, 111, 1165, 130))
+    if '터처' in result or \
+        '터차' in result or \
+        '터치' in result:
+        click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
+
+    # 퀘스트를 클리어 한 경우
     result = get_info.getImageToText('logs/temp.png', pos.QUEST_CLEAR_AREA_RESET_MARATON)
-
-    print(result)
-
     if '보상' in result or \
         '터치' in result or \
         '터차' in result or \
         '하어' in result or \
         '수떤' in result or \
         '수정' in result:
-
-        # 퀘스트 완료 클릭
         click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
-        time.sleep(2)
-        # ZZZ()
 
-    else:
-        print('퀘스트 미완료 or 감지 안됨')
-
-def checkSpeakingForResetMaraton():
-    result = get_info.getImageToText('logs/temp2.png', pos.QUEST_SPEAK_AREA_RESET_MARATON)
-
-    if len(result) > 10:
-        for _ in range(5):
+    # NPC가 말하고 있으면 SKIP 클릭
+    if len(get_info.getImageToText('logs/temp.png', (412, 586, 863, 669))) > 15:
+        pyautogui.click(1228, 64)
+    
+    # NPC가 말하고 있으면 대화창 연속 클릭
+    if len(get_info.getImageToText('logs/temp.png', pos.QUEST_SPEAK_AREA_RESET_MARATON)) > 15:
+        for _ in range(8):
             click(pos.TEMP_SPEAK_OK_BTN_S, pos.TEMP_SPEAK_OK_BTN_E)
             time.sleep(0.5)
 
-
-def goQuestForResetMaraton():
-    # 퀘스트 완료가 아닐 땐 한번씩 눌러줌
-    click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
-    
-def checkStories():
-    
-    # 퀘스트 목록을 눌러서 임무를 자동으로 수행할 수 있어요
-    if not pyautogui.locateOnScreen('1.png') == None:
-        click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
-        time.sleep(15)
-        click(pos.TEMP_POTION_BTN_S, pos.TEMP_POTION_BTN_E) # 물약 클릭
-    
-    # 아이템 장착
-    if not pyautogui.locateOnScreen('2.png') == None:
-        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
-        time.sleep(10)
-        click(pos.TEMP_CLO_BTN_S, pos.TEMP_CLO_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_CLO_BTN_S, pos.TEMP_CLO_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-
-    if not pyautogui.locateOnScreen('3.png') == None:
-        click(pos.POSIONS_BTN_S, pos.POSIONS_BTN_E)
-        time.sleep(3)
-        click(pos.BUY_BTN_S, pos.BUY_BTN_E)
-        time.sleep(3)
-        pyautogui.press('ESC')
-
-    if not pyautogui.locateOnScreen('4.png') == None:
-        click(pos.TEMP_FAST_SEE_BTN_S, pos.TEMP_FAST_SEE_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_FAST_SEE_BTN_S, pos.TEMP_FAST_SEE_BTN_E)
-        time.sleep(30)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_BTN_S, pos.TEMP_RIDE_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_FIRST_BTN_S, pos.TEMP_RIDE_FIRST_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-
-    if not pyautogui.locateOnScreen('5.png') == None:
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_BTN_S, pos.TEMP_RIDE_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_SECOND_BTN_S, pos.TEMP_RIDE_SECOND_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-
-    if not pyautogui.locateOnScreen('6.png') == None:
-        click(pos.TEMP_GO_HOME_BTN_S, pos.TEMP_GO_HOME_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_ALERT_OK_BTN_S, pos.TEMP_ALERT_OK_BTN_E)
-    
-    if not pyautogui.locateOnScreen('7.png') == None:
-        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
-        time.sleep(5)
-        click(pos.TEMP_USE_ITEM_BTN_S, pos.TEMP_USE_ITEM_BTN_E)
-        time.sleep(3)
-        pyautogui.click(945, 168)
-        time.sleep(3)
-        pyautogui.click(945, 168)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        pyautogui.click(1059, 158)
-        time.sleep(3)
-        pyautogui.click(1190, 662)
-        time.sleep(3)
-        pyautogui.click(1007, 233)
-        time.sleep(3)
-        pyautogui.click(856, 380)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        pyautogui.moveTo(1058, 633)
-        pyautogui.dragTo(1059, 682, 1, button='left')
-    
-    if not pyautogui.locateOnScreen('8.png') == None:
-        click(pos.POSIONS_BTN_S, pos.POSIONS_BTN_E)
-        time.sleep(3)
-        click(pos.BUY_BTN_S, pos.BUY_BTN_E)
-        time.sleep(3)
-        pyautogui.press('ESC')
-
-    if not pyautogui.locateOnScreen('9.png') == None:
-        pyautogui.click(1215, 121)
-        time.sleep(3)
-
-    if '정보' in get_info.getImageToText('logs/temp3.png', pos.SELECT_AVATAR_AREA_RESET_MARATON):
-        pyautogui.click(368, 509)
-        time.sleep(3)
-        pyautogui.click(1145, 655)
-        time.sleep(3)
-        pyautogui.click(1236, 65)
-        time.sleep(20)
-        pyautogui.click(638, 643)
-        time.sleep(10)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-        pyautogui.click(1117, 162)
-        time.sleep(3)
-        pyautogui.click(972, 185)
-        time.sleep(3)
-        click(pos.TEMP_RIDE_EQUIP_BTN_S, pos.TEMP_RIDE_EQUIP_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-    
-    if not pyautogui.locateOnScreen('12.png') == None:
-        click(pos.TEMP_QUIT_BTN_S, pos.TEMP_QUIT_BTN_E)
-        time.sleep(3)
-
-
-def checkEquipBtn():
     # 아이템 자동 장착
-    if not pyautogui.locateOnScreen('4.png') == None:
+    if not pyautogui.locateOnScreen('equip.png') == None:
+        print('아이템 먹음')
         click(pos.EQUIP_BTN_S, pos.EQUIP_BTN_E)
-        time.sleep(3)
-        click(pos.TEMP_BAG_BTN_S, pos.TEMP_BAG_BTN_E)
-        time.sleep(3)
-        pyautogui.click(947, 171)
-        time.sleep(3)
-        pyautogui.click(444, 598)
-        time.sleep(3)
-        pyautogui.click(706, 487)
-        time.sleep(3)
-        pyautogui.click(706, 487)
-        time.sleep(3)
-        pyautogui.press('ESC')
 
-def ZZZ():
-    pyautogui.press('Z')
+    # 튜토리얼 진행 중인지
+    if get_info.compareImage('logs/temp.png', (1060, 382, 1261, 424), '0.png'):
+        # HP 회복 물약을 사용해보세요!
+        pyautogui.click(1159, 500)
+
+    if get_info.compareImage('logs/temp.png', (973, 613, 1131, 656), '1.png'):
+        # 마물들을 쓰러뜨리게
+        pyautogui.click(1220, 638)
+        time.sleep(15)
+        pyautogui.click(990, 638)
+        time.sleep(15)
+        pyautogui.click(1220, 638)
+        time.sleep(15)
+        pyautogui.moveTo(990, 638)
+        pyautogui.dragTo(990, 648, 1, button='left')
+        time.sleep(5)
+        pyautogui.click(1220, 638)
+        time.sleep(15)
+        pyautogui.click(1220, 638)
+        time.sleep(15)
+        pyautogui.click(1220, 638)
+        time.sleep(15)
+        pyautogui.click(753, 413)
+        time.sleep(5)
+        pyautogui.click(1220, 638)
+
+    if get_info.compareImage('logs/temp.png', (996, 204, 1219, 247), '2.png'):
+        # 임무를 자동으로 수행할 수 있어요!
+        pyautogui.click(1090, 127)
+
+    if get_info.compareImage('logs/temp.png', (951, 142, 1269, 185), '3.png'):
+        # 획득한 장비는 가방 버튼을 눌러 확인할 수 있네.
+        pyautogui.click(1179, 55)
+        time.sleep(5)
+        pyautogui.click(945, 171)
+        time.sleep(5)
+        pyautogui.click(945, 171)
+        time.sleep(5)
+        pyautogui.click(1246, 56)
+
+def clickQuest():
+    # 한번씩 퀘스트 클릭 해주기
+    # 감지가 안될 경우 스토리 진행을 막기 위함
+    click(pos.QUEST_CLEAR_BTN_RESET_MARATON_S, pos.QUEST_CLEAR_BTN_RESET_MARATON_E)
 
 def temp():
-    print(pyautogui.locateOnScreen('12.png'))
-    # click(pos.TEMP_ALERT_OK_BTN_S, pos.TEMP_ALERT_OK_BTN_E)
-    # checkStories()
-    # print(pyautogui.locateOnScreen('11.png'))
+    # get_info.captureT((951, 142, 1269, 185))
+    print(get_info.compareImage('logs/temp.png', (951, 142, 1269, 185), '3.png'))
+    # print(get_info.compareImage('logs/temp.png', (996, 204, 1219, 247), '2.png'))
+    # print(get_info.getImageToText('logs/temp.png', (1029, 131, 1146, 147)))
     pass
